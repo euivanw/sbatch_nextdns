@@ -1,0 +1,18 @@
+version: '3'
+services:
+  sbatch_nextdns:
+    image: sbatch_nextdns
+    container_name: sbatch_nextdns
+    restart: unless-stopped
+    environment:
+      TZ: 'America/Sao_Paulo'
+      SBATCH_NEXTDNS_SERVER_PORT: 9090
+      SBATCH_NEXTDNS_BASE_HOST: 'https://link-ip.nextdns.io'
+      SBATCH_NEXTDNS_APPLICATION_ID: '7988hd9sdh24'
+      SBATCH_NEXTDNS_CONFIGURATION_ID: '8das3s'
+      SBATCH_NEXTDNS_POSTGRESQL_HOST: 'localhost'
+      SBATCH_NEXTDNS_POSTGRESQL_PORT: 5432
+      SBATCH_NEXTDNS_POSTGRESQL_DATABASE: 'sbatch_nextdns'
+      SBATCH_NEXTDNS_POSTGRESQL_USERNAME: 'postgres'
+      SBATCH_NEXTDNS_POSTGRESQL_PASSWORD: 'admin'
+      SBATCH_NEXTDNS_UPDATE_INTERVAL: 300

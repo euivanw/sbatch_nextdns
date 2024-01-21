@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "nextdns.base-url",
+      "type": "java.lang.String",
+      "description": "Base URL to update user address."
+    },
+    {
+      "name": "nextdns.configuration-id",
+      "type": "java.lang.String",
+      "description": "NextDNS configuration ID associated with the profile."
+    },
+    {
+      "name": "nextdns.account-id",
+      "type": "java.lang.String",
+      "description": "NextDNS unique account ID."
+    },
+    {
+      "name": "scheduler.interval",
+      "type": "java.lang.String",
+      "description": "Time in seconds that a task must run."
+    }
+  ]
+}

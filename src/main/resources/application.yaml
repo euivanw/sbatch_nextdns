@@ -1,0 +1,25 @@
+server:
+  port: ${SBATCH_NEXTDNS_SERVER_PORT}
+
+spring:
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${SBATCH_NEXTDNS_POSTGRESQL_HOST}:${SBATCH_NEXTDNS_POSTGRESQL_PORT}/${SBATCH_NEXTDNS_POSTGRESQL_DATABASE}
+    username: ${SBATCH_NEXTDNS_POSTGRESQL_USERNAME}
+    password: ${SBATCH_NEXTDNS_POSTGRESQL_PASSWORD}
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
+nextdns:
+  base-url: ${SBATCH_NEXTDNS_BASE_HOST}
+  configuration-id: ${SBATCH_NEXTDNS_CONFIGURATION_ID}
+  account-id: ${SBATCH_NEXTDNS_APPLICATION_ID}
+
+scheduler:
+  interval: ${SBATCH_NEXTDNS_UPDATE_INTERVAL}
