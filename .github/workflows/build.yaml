@@ -16,10 +16,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: false
+          cache: maven
 
       - name: Build with Maven
-        run: mvn -B clean install -DskipTests --file pom.xml
+        run: mvn -U -B clean install -DskipTests --file pom.xml
   tests:
     runs-on: ubuntu-latest
     needs: [ build ]
@@ -35,4 +35,4 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B test --file pom.xml
+        run: mvn -U -B test --file pom.xml
