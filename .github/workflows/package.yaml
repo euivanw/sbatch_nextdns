@@ -9,6 +9,8 @@ jobs:
     name: "Package and Delivery"
     runs-on: ubuntu-latest
     concurrency: ci-${{ github.ref }}
+    permissions:
+      contents: write
     steps:
       - name: "Git Checkout"
         uses: actions/checkout@v3
