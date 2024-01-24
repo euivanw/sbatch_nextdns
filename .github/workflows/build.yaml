@@ -1,4 +1,4 @@
-name: Build && Tests
+name: Build and Tests
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    name: Build with Maven
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
@@ -21,6 +22,7 @@ jobs:
       - name: Build with Maven
         run: mvn -U -B clean install -DskipTests --file pom.xml
   tests:
+    name: Unit Tests with Maven
     runs-on: ubuntu-latest
     needs: [ build ]
     steps:
