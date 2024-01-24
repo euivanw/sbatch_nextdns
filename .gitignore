@@ -33,5 +33,3 @@ build/
 .vscode/
 
 docker/*.jar
-# Project exclude paths
-/.mvn/
