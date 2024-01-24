@@ -25,11 +25,11 @@ jobs:
         if: success()
         run: mvn -U -B package --file pom.xml
 
-      - name: Increment version
+      - name: "Increment version"
         id: increment-version
         uses: RichardInnocent/semantic-versioning-maven@v0.1.0
 
-      - name: Print if version changed
+      - name: "Print if version changed"
         if: steps.increment-version.outputs.previous-version != steps.increment-version.outputs.new-version
         run: echo "The new version is now $new_version"
         env:
