@@ -20,9 +20,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - id: get-version
-        uses: jactions/maven-version@v1
-      
+      - name: "Maven version"
+        uses: JActions/maven-version@v1.2.0
+
       - name: "Build and Test"
         if: success()
         run: mvn -U -B clean install --file pom.xml
