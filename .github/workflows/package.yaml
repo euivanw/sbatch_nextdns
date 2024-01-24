@@ -2,7 +2,8 @@ name: "Package and Delivery"
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - "main"
 
 jobs:
   docker:
