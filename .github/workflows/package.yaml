@@ -2,7 +2,7 @@ name: "Package and Delivery"
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "main" ]
 
 jobs:
   docker:
@@ -31,12 +31,6 @@ jobs:
         id: increment-version
         uses: RichardInnocent/semantic-versioning-maven@v0.1.0
 
-      - name: "Print if version changed"
-        if: steps.increment-version.outputs.previous-version != steps.increment-version.outputs.new-version
-        run: echo "The new version is now $new_version"
-        env:
-          new_version: ${{ steps.increment-version.outputs.new-version }}
-
       - name: "Docker Setup Buildx"
         if: success()
         uses: docker/setup-buildx-action@v3.0.0
@@ -58,4 +52,4 @@ jobs:
           context: .
           file: Dockerfile
           platforms: ${{ vars.DOCKER_PLATFORMS }}
-          tags: ${{ vars.DOCKERHUB_TAG }}:latest
+          tags: ${{ vars.DOCKERHUB_TAG }}:${{ steps.increment-version.outputs.new-version }}
