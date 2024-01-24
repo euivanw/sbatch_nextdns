@@ -5,8 +5,8 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  package:
-    name: Package with Maven
+  docker:
+    name: "Docker"
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
@@ -23,13 +23,6 @@ jobs:
       - name: Package with Maven
         if: success()
         run: mvn -U -B package --file pom.xml
-  docker:
-    name: "Docker"
-    runs-on: ubuntu-latest
-    needs: [ package ]
-    steps:
-      - name: "Checkout Repository"
-        uses: actions/checkout@v4.1.1
 
       - name: "Docker Setup Buildx"
         if: success()
