@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up JDK 17
+        if: success()
         uses: actions/setup-java@v3
         with:
           java-version: '17'
@@ -20,4 +21,5 @@ jobs:
           cache: maven
 
       - name: Package with Maven
+        if: success()
         run: mvn -U -B package --file pom.xml
