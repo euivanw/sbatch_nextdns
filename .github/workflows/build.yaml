@@ -1,4 +1,4 @@
-name: Build and Tests
+name: "Build and Tests"
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
 
 jobs:
   build:
-    name: Build with Maven
+    name: "Build and Tests"
     runs-on: ubuntu-latest
     steps:
-      - name: Git Checkout
+      - name: "Git Checkout"
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: "Set up JDK 17"
         if: success()
         uses: actions/setup-java@v3
         with:
@@ -20,25 +20,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build with Maven
+      - name: "Build and Test"
         if: success()
-        run: mvn -U -B clean install -DskipTests --file pom.xml
-  tests:
-    name: Unit Tests with Maven
-    runs-on: ubuntu-latest
-    needs: [ build ]
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 17
-        if: success()
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Run Unit Tests
-        if: success()
-        run: mvn -U -B test --file pom.xml
+        run: mvn -U -B clean install --file pom.xml
