@@ -8,6 +8,7 @@ jobs:
   docker:
     name: "Package and Delivery"
     runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref }}
     steps:
       - name: "Git Checkout"
         uses: actions/checkout@v3
@@ -23,6 +24,16 @@ jobs:
       - name: "Package with Maven"
         if: success()
         run: mvn -U -B package --file pom.xml
+
+      - name: Increment version
+        id: increment-version
+        uses: RichardInnocent/semantic-versioning-maven@v0.1.0
+
+      - name: Print if version changed
+        if: steps.increment-version.outputs.previous-version != steps.increment-version.outputs.new-version
+        run: echo "The new version is now $new_version"
+        env:
+          new_version: ${{ steps.increment-version.outputs.new-version }}
 
       - name: "Docker Setup Buildx"
         if: success()
