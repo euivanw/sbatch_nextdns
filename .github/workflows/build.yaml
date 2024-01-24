@@ -2,7 +2,8 @@ name: "Build and Tests"
 
 on:
   push:
-    branches: [ "develop" ]
+    branches-ignore:
+      - "main"
 
 jobs:
   build:
